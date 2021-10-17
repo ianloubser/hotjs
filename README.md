@@ -81,65 +81,68 @@ el2.innerHTML = 'some text'
 
 At first glance the above doesn't necessarily look too much like an improvement. But the key improvement introduced by HotJS is the `child` property. This allows us to nest as many elements as we'de like to get more advanced tree structures, take for example a basic todo app:
 ```javascript
-  const CreateTodo = (todos) => {
-	  let inputState = '';
-    
-    const todoRemove = () => {
-      todos.push(inputState)
-      inputState = ''
-      hot.flush(['todos', 'todo-input'])
-    }
-    
-    const todoChange = (e) => {
-      inputState = e.target.value;
-    }
-    
-  	return () => hot.div([
-    	hot.input({
-	      id: 'todo-input',
-      	onkeyup: todoChange,
-        value: inputState,
-        child: ''
-      }),
-      hot.button({
-      	onclick: todoRemove,
-      	child: 'Save TODO'
-      })
-    ])
-  }
-  
-  const TodoItem = (t, todos) => {
-    const onTodoRemove = () => {
-      todos.splice(todos.indexOf(t), 1)
-      hot.flush(['todos'])
-    }
-    
-  	return () => hot.li([
-      hot.span(t),
-      hot.button({
-        onclick: onTodoRemove,
-        style: {
-          marginLeft: '20px'
-        },
-        child: 'Remove'
-      })    
-    ])
-  }
-  
-  const TodoList = (todos) => {
-	  console.log("Updating todos....")
-  	return () => hot.ul({
-	    id: 'todos',
-    	child: () => todos.map(t => TodoItem(t, todos))
-    })
-  }
-  
-  var todos = []
-  var app = hot.div([
-    hot.h4('Todo sample'),
-    TodoList(todos),
-    CreateTodo(todos)
-  ])
 
-  document.body.appendChild(app)
+const CreateTodo = (todos) => {
+  let inputState = '';
+  
+  const todoRemove = () => {
+    todos.push(inputState)
+    inputState = ''
+    hot.flush(['todos', 'todo-input'])
+  }
+  
+  const todoChange = (e) => {
+    inputState = e.target.value;
+  }
+  
+  return () => hot.div([
+    hot.input({
+      id: 'todo-input',
+      onkeyup: todoChange,
+      value: inputState,
+      child: ''
+    }),
+    hot.button({
+      onclick: todoRemove,
+      child: 'Save TODO'
+    })
+  ])
+}
+
+const TodoItem = (t, todos) => {
+  const onTodoRemove = () => {
+    todos.splice(todos.indexOf(t), 1)
+    hot.flush(['todos'])
+  }
+  
+  return () => hot.li([
+    hot.span(t),
+    hot.button({
+      onclick: onTodoRemove,
+      style: {
+        marginLeft: '20px'
+      },
+      child: 'Remove'
+    })    
+  ])
+}
+
+const TodoList = (todos) => {
+  console.log("Updating todos....")
+  return () => hot.ul({
+    id: 'todos',
+    child: () => todos.map(t => TodoItem(t, todos))
+  })
+}
+
+var todos = []
+var app = hot.div([
+  hot.h4('Todo sample'),
+  TodoList(todos),
+  CreateTodo(todos)
+])
+
+document.body.appendChild(app)
 ```
+
+Writing the above todo code with pure `createElement` and the `Element` interface would be an absolute headache.
