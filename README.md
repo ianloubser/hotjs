@@ -1,5 +1,5 @@
 # HotJS
-The smallest intentionally-reactive, declarative javascript UI framework. No compiling needed, no crazy state management. Supports SSR.
+The smallest intentionally-reactive, declarative javascript UI framework. No compiling needed, no crazy state management. Supports SSR through `jsdom`.
 
 ## Why
 I know, we don't really need another JS framework in world, but it sure was fun building this :) In all seriousness, sometimes you need something that operates directly on the DOM, no virtual DOM, code compiling and transpiling etc. I've used this to build small browser extensions, widgets etc. Have not really tested on a big SaaS product yet, could probably work but not sure it's the best approach.
@@ -7,16 +7,16 @@ I know, we don't really need another JS framework in world, but it sure was fun 
 ## How
 Vanilla JS has come far over the past 5 years, module support, ES6 syntax natively support in browsers etc. These things were the most reasons for needing things like babel. Yes babel still has it's place, but probably not as often needed anymore as it was (don't quote me on this).
 
-HotJS at it's core is essentially "syntactic sugar" for the HTMLElement API in browser javascript, or a more friendly interface for HTMLElement API if you will.
+HotJS at its core is essentially "syntactic sugar" for the HTMLElement API in browser javascript, or a more friendly interface for HTMLElement API if you will.
 
 ### What is intentionally-reactive ?
-It's a term I use to define the paradigm where any UI reactivity is intentionally declared instead of some black magic or Virtual DOM trying to determine when your UI should update based on state changes. Intentional reactivity allows you to build components by defining their render rules, and intentionally triggering that component UI to update with a physical statement of code. This allows HotJS to cut down on massive amounts of code. HotJS doesn't try to cater for the plethora of cases which would require a UI change, nor try to be smart enough to keep the whole process optimized. Instead, it leaves the developer in charge of defining rules for reactivity and keeping the UI smooth by manually envoking a UI re-render.
+It's a term I use to define the paradigm where any UI reactivity is intentionally declared instead of some black magic or Virtual DOM trying to determine when your UI should update based on state changes. Intentional reactivity allows you to build components by defining their render rules, and intentionally triggering that component UI to update with a physical statement of code. This allows HotJS to cut down on massive amounts of code. HotJS doesn't try to cater for the plethora of cases which would require a UI change, nor try to be smart enough to keep the whole process optimised. Instead, it leaves the developer in charge of defining rules for reactivity and keeping the UI smooth by manually invoking a UI re-render.
 
 Enough talk, let me show some code.
 
 ## Samples
 
-First step would be to initialize hotJS
+First step would be to initialise hotJS
 ```javascript
 var hot = HotJS()
 ```
