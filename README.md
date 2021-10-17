@@ -85,7 +85,7 @@ At first glance the above doesn't necessarily look too much like an improvement.
 const CreateTodo = (todos) => {
   let inputState = '';
   
-  const todoRemove = () => {
+  const todoAdd = () => {
     todos.push(inputState)
     inputState = ''
     hot.flush(['todos', 'todo-input'])
@@ -103,7 +103,7 @@ const CreateTodo = (todos) => {
       child: ''
     }),
     hot.button({
-      onclick: todoRemove,
+      onclick: todoAdd,
       child: 'Save TODO'
     })
   ])
@@ -145,4 +145,4 @@ var app = hot.div([
 document.body.appendChild(app)
 ```
 
-Writing the above todo code with pure `createElement` and the `Element` interface would be an absolute headache. You can check the todo fiddle here https://jsfiddle.net/loubserian/nL6bd0mc/121/ .
+Writing the above todo code with pure `createElement` and the `Element` interface would be an absolute headache. You can check the todo fiddle here https://jsfiddle.net/loubserian/nL6bd0mc/134 .
