@@ -145,4 +145,4 @@ var app = hot.div([
 document.body.appendChild(app)
 ```
 
-Writing the above todo code with pure `createElement` and the `Element` interface would be an absolute headache.
+Writing the above todo code with pure `createElement` and the `Element` interface would be an absolute headache. You can check the todo fiddle here https://jsfiddle.net/loubserian/nL6bd0mc/121/ .
